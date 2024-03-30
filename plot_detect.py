@@ -28,7 +28,7 @@ class_names = class_names_from_csv(class_map_path)
 
 wav_file = os.listdir(r'data\wav') # Change
 
-png_file = os.listdir(r'C:\Users\Administrator\PycharmProjects\main\data\detect')
+png_file = os.listdir(r'data\detect')
 png_file = [file.replace('png', 'wav') for file in png_file]
 wav_file = set(wav_file) ^ set(png_file)
 wav_file = sorted(list(wav_file))
@@ -44,8 +44,6 @@ for file in wav_file:
 
     file_contents = tf.io.read_file(str(output_wav))
     wav_data, sample_rate = tf.audio.decode_wav(file_contents, desired_channels=2)
-    # wav_data_b = wav_data[:, 1]
-    # wav_data_b = tfio.audio.resample(wav_data_b, rate_in=44100, rate_out=16000)
     wav_data = wav_data[:, 0]
     wav_data = tfio.audio.resample(wav_data, rate_in=44100, rate_out=16000)
 
@@ -56,14 +54,6 @@ for file in wav_file:
 
     # plot image
     plt.figure(figsize=(30, 7))
-
-    # plt.subplot(4, 1, 1)
-    # plt.plot(wav_data)
-    # plt.xlim([0, len(wav_data)])
-    #
-    # plt.subplot(4, 1, 2)
-    # plt.plot(wav_data_b)
-    # plt.xlim([0, len(wav_data_b)])
 
     plt.subplot(2, 1, 1)
     plt.imshow(spectrogram_np.T, aspect='auto', interpolation='nearest', origin='lower')
