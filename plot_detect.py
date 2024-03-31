@@ -1,3 +1,5 @@
+# !pip install tensorflow-io
+
 import os
 import time
 from pathlib import Path
@@ -26,9 +28,9 @@ def class_names_from_csv(class_map_csv_text):
 class_map_path = yamnet_model.class_map_path().numpy()
 class_names = class_names_from_csv(class_map_path)
 
-wav_file = os.listdir(r'data\wav') # Change
+wav_file = os.listdir(r'data/wav') # Change
 
-png_file = os.listdir(r'data\detect')
+png_file = os.listdir(r'data/detect')
 png_file = [file.replace('png', 'wav') for file in png_file]
 wav_file = set(wav_file) ^ set(png_file)
 wav_file = sorted(list(wav_file))
@@ -37,7 +39,7 @@ for file in wav_file:
 
     start_time = time.time()
 
-    output_wav = Path(r'data\wav') / Path(file) # Change
+    output_wav = Path(r'data/wav') / Path(file) # Change
 
     if os.path.exists(output_wav):
         pass
