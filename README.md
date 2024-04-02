@@ -6,3 +6,5 @@ Please follow the file structure:
 <br>└───data
 <br>&emsp;&emsp;&emsp;├───detect
 <br>&emsp;&emsp;&emsp;└───wav
+
+<br> If you run it in Colab, create the folder under "content"
